@@ -1,4 +1,3 @@
-input {
   http_poller {
     urls => {
       myApiPoller => {
@@ -26,18 +25,3 @@ input {
     codec => "json"
     metadata_target => "my-token"
   }
-
-  tcp {
-    port => 5013
-    codec => "json_lines"
-  }
-}
-
-
-filter {
-}
-
-output {
-  stdout {
-  }
-}
