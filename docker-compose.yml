@@ -5,13 +5,14 @@ services:
     container_name: logstashJiraCA
     volumes:
     - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    - ./logstash/plugin/logstash-offline-plugins-7.11.1.zip:/usr/share/logstash/logstash-offline-plugins-7.11.1.zip
     ports:
       - "5011:5011"
       - "5012:5012"
       - "5013:5013"
     networks:
       - odfe-net
-    command: sh -c "/usr/share/logstash/bin/logstash-plugin install logstash-filter-rest && exec /usr/share/logstash/bin/logstash"
+    command: sh -c "/usr/share/logstash/bin/logstash-plugin install file:///usr/share/logstash/logstash-offline-plugins-7.11.1.zip && exec /usr/share/logstash/bin/logstash"
 volumes:
   odfe-data1:
   odfe-data2:
